@@ -36,8 +36,8 @@ class character:
         self.thorns=thorns
         self.armor=armor
         #terminar
-        self.shield=self.shield
-        self.shieldstat=self.shield
+        # self.shield=self.shield
+        # self.shieldstat=self.shield
 
         #level system
         self.level=int(1)
@@ -49,8 +49,6 @@ class character:
         self.maxhp= 5 * self.vit
         self.totalmaxhp = self.maxhp + self.bonushp
         self.acthp = self.totalmaxhp
-
-        #shield system
 
         #inventory system
         #inventario é so uma big lista anota ai

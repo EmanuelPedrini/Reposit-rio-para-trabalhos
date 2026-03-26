@@ -45,7 +45,7 @@ class enemy:
 
             HC = 10
             reduction = player.armor / (player.armor + HC)
-            reduction = min(reduction, 0.75)
+            reduction = min(reduction, 0.90)
             damage = max(1, round(damage * (1 - reduction)))
 
             if self.vampirism != 0:
