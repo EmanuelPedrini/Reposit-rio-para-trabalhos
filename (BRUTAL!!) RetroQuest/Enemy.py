@@ -5,7 +5,7 @@ from Itens_Data import todososequipamentos
 
 # from 
 class enemy:
-    def __init__(self, name, totalmaxhp, atk, atkbonus, vampirism, thorns, ac, centsondeath, xpondeath):
+    def __init__(self, name, totalmaxhp, atk, atkbonus, vampirism, thorns, ac, centsondeath, xpondeath, atkdist):
         self.name = f"{name} / [ Level {globaldanger }  ]"
         #hp
         self.totalmaxhp = int(round(totalmaxhp * globaldangercalc))
@@ -23,6 +23,8 @@ class enemy:
         self.realvampirism=float(vampirism*0.01)
         self.thorns=thorns
 
+        self.atkdist = atkdist
+
         #self.dead=False
     #Ancora 3
 
@@ -39,9 +41,21 @@ class enemy:
     def attack(self, player):
         roll= rolld20() + self.atkbonus
         if roll >= player.ac:
-            damage = self.atk
+            damage =  self.atk
+
+            HC = 10
+            reduction = player.armor / (player.armor + HC)
+            reduction = min(reduction, 0.75)
+            damage = max(1, round(damage * (1 - reduction)))
+
             if self.vampirism != 0:
                 self.heal(int(damage*(self.realvampirism)))
+            
+            if player.thorns != 0 and self.atkdist == "m":
+                tomado= player.thorns
+                self.toma(tomado, player)
+                print(f"The {self.name} taked {tomado} damage from your thorns!")
+
             print(f"[ {roll} ]! {self.name} hit the {player.name} dealing {damage} damage!")
             player.toma(damage)
         else:

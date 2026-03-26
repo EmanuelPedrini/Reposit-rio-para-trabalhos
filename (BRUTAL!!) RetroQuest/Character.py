@@ -3,7 +3,7 @@ from utils import rolld20
 import sys
 
 class character:
-    def __init__(self, name, pronoun, possessive, strg, dex, vit, luck, cha, intel, ac, vampirism, thorns, skills, passives, cents):
+    def __init__(self, name, pronoun, possessive, strg, dex, vit, luck, cha, intel, ac, vampirism, thorns, armor, skills, passives, cents):
         #textos
         self.name = name 
         self.pronoun = pronoun
@@ -34,6 +34,10 @@ class character:
         self.vampirism=vampirism
         self.realvampirism=float(vampirism*0.01)
         self.thorns=thorns
+        self.armor=armor
+        #terminar
+        self.shield=self.shield
+        self.shieldstat=self.shield
 
         #level system
         self.level=int(1)
